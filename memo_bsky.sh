@@ -45,7 +45,7 @@ post_bsky() {
     -H "Authorization: Bearer $3" \
     -H "Content-Type: application/json" \
     --data "$(jq -n --arg content "$4" --arg handle "$2" --arg time "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '{repo: $handle, collection: "app.bsky.feed.post", record: {text: $content, createdAt: $time}}')" | \
-   jq
+   jq .validationStatus
 }
 
 while getopts "pbxm:" opt; do
